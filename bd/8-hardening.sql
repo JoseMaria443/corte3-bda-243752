@@ -1,5 +1,3 @@
--- Funcion opcional para escenarios donde se requiera SQL dinamico seguro.
--- Ejemplo: setear rol desde backend sin concatenacion insegura.
 CREATE OR REPLACE FUNCTION fn_set_local_role_safe(p_role_name TEXT)
 RETURNS VOID
 LANGUAGE plpgsql

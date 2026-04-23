@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clinica Vet - Seguridad y Rendimiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-a"></div>
+    <div class="bg-shape bg-shape-b"></div>
+
+    <main class="shell">
+      <section class="card auth-card" id="loginView">
+        <div class="hero-copy">
+          <span class="eyebrow">Clinica Veterinaria</span>
+          <h1>Acceso al sistema</h1>
+          <p class="subtitle">Selecciona un perfil para entrar al panel de trabajo.</p>
+        </div>
+
+        <div class="profile-grid" id="profileGrid">
+          <button class="profile-card" data-profile="vet_pablo" type="button">
+            <span class="profile-role">Veterinario</span>
+            <strong>Pablo</strong>
+            <small>Atiende pacientes asignados y registra vacunas.</small>
+          </button>
+          <button class="profile-card" data-profile="recepcion_maria" type="button">
+            <span class="profile-role">Recepcion</span>
+            <strong>Maria</strong>
+            <small>Consulta mascotas y agenda la operacion diaria.</small>
+          </button>
+          <button class="profile-card" data-profile="admin_ana" type="button">
+            <span class="profile-role">Administrador</span>
+            <strong>Ana</strong>
+            <small>Acceso completo para supervision y pruebas.</small>
+          </button>
+        </div>
+
+        <div class="grid grid-2 login-fields">
+          <label>
+            Usuario
+            <input id="usernameInput" type="text" placeholder="nombre de usuario" />
+          </label>
+
+          <label>
+            Clave
+            <input id="passwordInput" type="password" placeholder="clave de acceso" />
+          </label>
+        </div>
+
+        <div class="row-actions">
+          <button id="enterBtn" class="btn btn-primary">Entrar al sistema</button>
+          <span id="sessionInfo" class="mono"></span>
+        </div>
+      </section>
+
+      <section class="dashboard-shell hidden" id="dashboardView">
+        <section class="card dashboard-header">
+          <div>
+            <span class="eyebrow">Dashboard</span>
+            <h2 id="welcomeTitle">Bienvenido</h2>
+            <p class="subtitle" id="welcomeSubtitle"></p>
+          </div>
+          <button id="logoutBtn" class="btn">Cerrar sesion</button>
+        </section>
+
+        <section class="card" id="opsVeterinario">
+          <div class="section-head">
+            <div>
+              <h2>Mis pacientes asignados</h2>
+              <p class="subtitle">Consulta personalizada y acciones medicas.</p>
+            </div>
+            <div class="row-actions compact-actions">
+              <button id="pendingBtnVet" class="btn">Actualizar</button>
+              <button id="applyVacunaBtn" class="btn btn-primary">Aplicar vacuna</button>
+              <div id="pendingLatencyVet" class="latency mono">-</div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mascota</th>
+                  <th>Especie</th>
+                  <th>Dueno</th>
+                  <th>Telefono</th>
+                  <th>Ultima vacuna</th>
+                  <th>Dias</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="pendingResultsVet"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card" id="opsRecepcion">
+          <div class="section-head">
+            <div>
+              <h2>Operaciones de recepcion</h2>
+              <p class="subtitle">Buscador global y lista de vacunacion pendiente.</p>
+            </div>
+          </div>
+
+          <div class="card nested-card">
+            <div class="section-head slim">
+              <h3>Buscador global de mascotas</h3>
+              <div id="searchLatency" class="latency mono">-</div>
+            </div>
+            <div class="grid grid-3">
+              <input id="searchInput" type="text" placeholder="Buscar mascota" />
+              <button id="searchBtn" class="btn">Buscar</button>
+              <span></span>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Nacimiento</th>
+                    <th>Dueno ID</th>
+                  </tr>
+                </thead>
+                <tbody id="searchResults"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card nested-card">
+            <div class="section-head slim">
+              <h3>Vacunacion pendiente</h3>
+              <div class="row-actions compact-actions">
+                <button id="pendingBtnRecepcion" class="btn">Actualizar</button>
+                <div id="pendingLatencyRecepcion" class="latency mono">-</div>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mascota</th>
+                    <th>Especie</th>
+                    <th>Dueno</th>
+                    <th>Telefono</th>
+                    <th>Ultima vacuna</th>
+                    <th>Dias</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="pendingResultsRecepcion"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

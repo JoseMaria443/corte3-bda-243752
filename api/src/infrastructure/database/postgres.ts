@@ -10,6 +10,6 @@ pool.on("connect", () => {
   logInfo("[DB] PostgreSQL pool conectado");
 });
 
-pool.on("error", (err) => {
+pool.on("error", (err: Error) => {
   logError("[DB] Error inesperado en PostgreSQL pool", err);
 });

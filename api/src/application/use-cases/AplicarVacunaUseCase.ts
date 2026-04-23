@@ -12,7 +12,8 @@ export class AplicarVacunaUseCase {
   async execute(input: AplicarVacunaInput): Promise<number> {
     const newId = await this.repository.aplicarVacuna(input);
 
-    const cacheKey = `${CACHE_KEYS.VACUNACION_PENDIENTE}:vet:${input.veterinarioId}`;
+    const cacheOwner = input.veterinarioId ?? input.role;
+    const cacheKey = `${CACHE_KEYS.VACUNACION_PENDIENTE}:owner:${cacheOwner}`;
     await this.cache.del(cacheKey);
 
     return newId;
