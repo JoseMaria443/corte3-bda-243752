@@ -12,6 +12,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./bd/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./bd/2-procedures.sql:/docker-entrypoint-initdb.d/02-procedures.sql:ro
+      - ./bd/3-triggers.sql:/docker-entrypoint-initdb.d/03-triggers.sql:ro
+      - ./bd/4-functions.sql:/docker-entrypoint-initdb.d/04-functions.sql:ro
+      - ./bd/5-views.sql:/docker-entrypoint-initdb.d/05-views.sql:ro
+      - ./bd/6-roles.sql:/docker-entrypoint-initdb.d/06-roles.sql:ro
+      - ./bd/7-rls.sql:/docker-entrypoint-initdb.d/07-rls.sql:ro
+      - ./bd/8-hardening.sql:/docker-entrypoint-initdb.d/08-hardening.sql:ro
+      - ./bd/9-view-permissions.sql:/docker-entrypoint-initdb.d/09-view-permissions.sql:ro
     networks:
       - vet_net
 
